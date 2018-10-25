@@ -8,11 +8,11 @@
       <button [disabled]="todoForm.invalid" class="btn btn-info">Add Todo</button>
     </form>
 
-    <div class="action-buttons">
-        <button *ngIf="todolist.length" class="btn btn-info" (click)="deleteCompleted()">Delete Completed</button>
-        <button *ngIf="todolist.length" class="btn btn-info" style="margin-left:10px;" (click)="showAll()">Show All</button>
-        <button *ngIf="todolist.length" class="btn btn-info" style="margin-left:10px;" (click)="showPending()">Show Pending</button>
-        <button *ngIf="todolist.length" class="btn btn-info" style="margin-left:10px;" (click)="showCompleted()">Show Completed</button>
+    <div class="action-buttons" *ngIf="todolist.length">
+        <button class="btn btn-info" (click)="deleteCompleted()">Delete Completed</button>
+        <button class="btn btn-info" style="margin-left:10px;" (click)="showAll()">Show All</button>
+        <button class="btn btn-info" style="margin-left:10px;" (click)="showPending()">Show Pending</button>
+        <button class="btn btn-info" style="margin-left:10px;" (click)="showCompleted()">Show Completed</button>
     </div>
     
     <br/>
@@ -29,7 +29,7 @@
         <div class="show-completed" *ngIf="isCompleted && list.complete && !isPending">
           <input type="checkbox" class="checkbox" [(ngModel)]="list.complete" [checked]="list.complete">
           <span class="todocontent">
-            <span>{{list.title}}</span>
+            <span  [ngClass]="{'checked': list.complete}">{{list.title}}</span>
             <button class="btn btn-info btn-sm" (click)="removeTodo(i)">x</button>
           </span>  
         </div>
