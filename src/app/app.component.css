@@ -1,0 +1,31 @@
+.maindiv{
+    margin-top:100px;
+}
+
+.checked {
+    text-decoration: line-through;
+}
+.todolist{
+    margin-bottom: 8px;
+}
+.todolist input.checkbox {
+    width: 20px;
+    height: 18px;
+}
+
+.todolist .todocontent {
+    position: relative;
+    font-size: large;
+    margin-left: 10px;
+    top:-3px;
+}
+
+.btn-sm {
+    margin-left: 10px;
+    padding: 0 5px;
+}
+
+.action-buttons{
+    margin-top:10px; 
+    margin-bottom:25px;
+}

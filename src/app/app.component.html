@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="col-sm-8 offset-sm-2 maindiv">
+    <h1 class="text-center mb-5">Todo List with Angular</h1>
+    <form #todoForm="ngForm" (ngSubmit)="todoList(todoForm)">
+      <div class="form-group">
+        <input type="text" class="form-control" name="todo" [(ngModel)]="todo" placeholder="Enter todo" required>
+      </div>
+      <button [disabled]="todoForm.invalid" class="btn btn-info">Add Todo</button>
+    </form>
+
+    <div class="action-buttons">
+        <button *ngIf="todolist.length" class="btn btn-info" (click)="deleteCompleted()">Delete Completed</button>
+        <button *ngIf="todolist.length" class="btn btn-info" style="margin-left:10px;" (click)="showAll()">Show All</button>
+        <button *ngIf="todolist.length" class="btn btn-info" style="margin-left:10px;" (click)="showPending()">Show Pending</button>
+        <button *ngIf="todolist.length" class="btn btn-info" style="margin-left:10px;" (click)="showCompleted()">Show Completed</button>
+    </div>
+    
+    <br/>
+   
+      <div class="todolist" *ngFor="let list of todolist; index as i">
+        <div class="show-all" *ngIf="!isCompleted && !isPending">
+          <input type="checkbox" class="checkbox" [(ngModel)]="list.complete" [checked]="list.complete">
+          <span class="todocontent">
+            <span [ngClass]="{'checked': list.complete}">{{list.title}}</span>
+            <button class="btn btn-info btn-sm" (click)="removeTodo(i)">x</button>
+          </span>  
+        </div>
+     
+        <div class="show-completed" *ngIf="isCompleted && list.complete && !isPending">
+          <input type="checkbox" class="checkbox" [(ngModel)]="list.complete" [checked]="list.complete">
+          <span class="todocontent">
+            <span>{{list.title}}</span>
+            <button class="btn btn-info btn-sm" (click)="removeTodo(i)">x</button>
+          </span>  
+        </div>
+
+        <div class="show-pending" *ngIf="isPending && !list.complete && !isCompleted">
+          <input type="checkbox" class="checkbox" [(ngModel)]="list.complete" [checked]="list.complete">
+          <span class="todocontent">
+            <span>{{list.title}}</span>
+            <button class="btn btn-info btn-sm" (click)="removeTodo(i)">x</button>
+          </span>  
+        </div>
+
+      </div>
+      
+    
+  </div> 
+</div>
